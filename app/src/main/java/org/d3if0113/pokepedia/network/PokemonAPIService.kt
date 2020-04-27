@@ -1,8 +1,9 @@
 package org.d3if0113.pokepedia.network
 
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
+import kotlinx.coroutines.Deferred
 import org.d3if0113.pokepedia.property.PokemonRegionProperty
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -19,12 +20,13 @@ private val moshi = Moshi.Builder()
 
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
+    .addCallAdapterFactory(CoroutineCallAdapterFactory())
     .baseUrl(BASE_URL_DATA)
     .build()
 
 interface PokemonAPIService {
     @GET("region.json")
-    fun getData(): Call<List<PokemonRegionProperty>>
+    fun getData(): Deferred<List<PokemonRegionProperty>>
 }
 
 object PokemonAPI {
