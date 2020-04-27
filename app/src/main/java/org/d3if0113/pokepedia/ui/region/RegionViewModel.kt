@@ -9,10 +9,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import org.d3if0113.pokepedia.network.PokemonAPI
+import org.d3if0113.pokepedia.network.PokemonAPIStatus
 import org.d3if0113.pokepedia.property.PokemonRegionProperty
 
 class RegionViewModel(application: Application) : AndroidViewModel(application) {
-    private val _response = MutableLiveData<String>()
+    private val _status = MutableLiveData<PokemonAPIStatus>()
     private val _properties = MutableLiveData<List<PokemonRegionProperty>>()
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(
@@ -24,21 +25,22 @@ class RegionViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     private fun getRegionProperties() {
-        _response.value = "Respon API Region"
+        _status.value = PokemonAPIStatus.LOADING
         coroutineScope.launch {
             var getPropertiesDeferred = PokemonAPI.retrofitService.getData()
             try {
                 var listResult = getPropertiesDeferred.await()
-                _response.value = "Sukses: ${listResult.size} region"
                 _properties.value = listResult
+                _status.value = PokemonAPIStatus.DONE
             } catch (e: Exception) {
-                _response.value = "Gagal respon API Region: " + e.message
+                _status.value = PokemonAPIStatus.ERROR
+                _properties.value = ArrayList()
             }
         }
     }
 
     // ----------------------------- public variable & function
-    val response: LiveData<String> get() = _response
+    val status: LiveData<PokemonAPIStatus> get() = _status
     val properties: LiveData<List<PokemonRegionProperty>> get() = _properties
 
     override fun onCleared() {

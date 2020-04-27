@@ -34,3 +34,5 @@ object PokemonAPI {
         retrofit.create(PokemonAPIService::class.java)
     }
 }
+
+enum class PokemonAPIStatus { LOADING, ERROR, DONE }
