@@ -29,6 +29,7 @@ class RegionFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.regionViewModel = viewModel
 
+        binding.rvRegion.adapter = RegionAdapter()
         return binding.root
     }
 
