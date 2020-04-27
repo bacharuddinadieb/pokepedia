@@ -3,22 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/regionFragment">
+    app:startDestination="@id/regionNav">
 
     <fragment
-        android:id="@+id/regionFragment"
+        android:id="@+id/regionNav"
         android:name="org.d3if0113.pokepedia.ui.region.RegionFragment"
         android:label="@string/region"
         tools:layout="@layout/fragment_region" />
 
     <fragment
-        android:id="@+id/pokedexFragment"
+        android:id="@+id/pokedexNav"
         android:name="org.d3if0113.pokepedia.ui.pokedex.PokedexFragment"
         android:label="@string/pokedex"
         tools:layout="@layout/fragment_pokedex" />
 
     <fragment
-        android:id="@+id/favoriteFragment"
+        android:id="@+id/favoriteNav"
         android:name="org.d3if0113.pokepedia.ui.favorite.FavoriteFragment"
         android:label="@string/favorite"
         tools:layout="@layout/fragment_favorite" />
