@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">PokePedia</string>
+    <string name="pokedex">Pokédex</string>
+    <string name="region">Region</string>
+    <string name="favorite">Favorite</string>
 </resources>
