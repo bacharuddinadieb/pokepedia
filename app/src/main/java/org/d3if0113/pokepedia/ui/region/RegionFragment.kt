@@ -1,13 +1,14 @@
 package org.d3if0113.pokepedia.ui.region
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import org.d3if0113.pokepedia.R
 import org.d3if0113.pokepedia.databinding.FragmentRegionBinding
 
@@ -31,12 +32,17 @@ class RegionFragment : Fragment() {
         binding.regionViewModel = viewModel
 
         binding.rvRegion.adapter =
-            RegionAdapter(RegionAdapter.RegionListener { pokemonRegionProperty ->
-                Log.i(
-                    "ahahaha",
-                    "${pokemonRegionProperty.nama} yes"
-                )
+            RegionAdapter(RegionAdapter.RegionListener {
+                viewModel.navigateToDetailRegionClick(it)
             })
+
+        viewModel.navigateToDetailRegion.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                this.findNavController()
+                    .navigate(RegionFragmentDirections.actionRegionNavToDetailRegionFragment(it))
+                viewModel.navigatedToDetailRegion()
+            }
+        })
         return binding.root
     }
 

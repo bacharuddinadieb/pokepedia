@@ -9,7 +9,11 @@
         android:id="@+id/regionNav"
         android:name="org.d3if0113.pokepedia.ui.region.RegionFragment"
         android:label="@string/region"
-        tools:layout="@layout/fragment_region" />
+        tools:layout="@layout/fragment_region">
+        <action
+            android:id="@+id/action_regionNav_to_detailRegionFragment"
+            app:destination="@id/detailRegionNav" />
+    </fragment>
 
     <fragment
         android:id="@+id/pokedexNav"
@@ -22,4 +26,13 @@
         android:name="org.d3if0113.pokepedia.ui.favorite.FavoriteFragment"
         android:label="@string/favorite"
         tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/detailRegionNav"
+        android:name="org.d3if0113.pokepedia.ui.region.detail.DetailRegionFragment"
+        android:label="fragment_detail_region"
+        tools:layout="@layout/fragment_detail_region">
+        <argument
+            android:name="SELECTED_REGION_PROPERTY"
+            app:argType="org.d3if0113.pokepedia.property.PokemonRegionProperty" />
+    </fragment>
 </navigation>

@@ -15,6 +15,7 @@ import org.d3if0113.pokepedia.property.PokemonRegionProperty
 class RegionViewModel(application: Application) : AndroidViewModel(application) {
     private val _status = MutableLiveData<PokemonAPIStatus>()
     private val _properties = MutableLiveData<List<PokemonRegionProperty>>()
+    private val _navigateToDetailRegion = MutableLiveData<PokemonRegionProperty>()
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(
         viewModelJob + Dispatchers.Main
@@ -42,6 +43,15 @@ class RegionViewModel(application: Application) : AndroidViewModel(application) 
     // ----------------------------- public variable & function
     val status: LiveData<PokemonAPIStatus> get() = _status
     val properties: LiveData<List<PokemonRegionProperty>> get() = _properties
+    val navigateToDetailRegion: LiveData<PokemonRegionProperty> get() = _navigateToDetailRegion
+
+    fun navigatedToDetailRegion() {
+        _navigateToDetailRegion.value = null
+    }
+
+    fun navigateToDetailRegionClick(pokemonRegionProperty: PokemonRegionProperty) {
+        _navigateToDetailRegion.value = pokemonRegionProperty
+    }
 
     override fun onCleared() {
         super.onCleared()
