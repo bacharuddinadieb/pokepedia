@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import org.d3if0113.pokepedia.R
@@ -26,6 +27,8 @@ class DetailRegionFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_detail_region, container, false)
         val args = arguments?.let { DetailRegionFragmentArgs.fromBundle(it) }
         val pokemonRegionProperty = args!!.SELECTEDREGIONPROPERTY
+        (activity as AppCompatActivity).supportActionBar?.title =
+            pokemonRegionProperty.nama.capitalize()
 
         Log.i("Data Parcel", args.SELECTEDREGIONPROPERTY.nama)
         binding.varRegionProperty = pokemonRegionProperty
