@@ -4,10 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import org.d3if0113.pokepedia.network.PokemonAPI
 import org.d3if0113.pokepedia.network.PokemonAPIStatus
 import org.d3if0113.pokepedia.property.PokemonRegionProperty
@@ -34,6 +31,7 @@ class RegionViewModel(application: Application) : AndroidViewModel(application) 
                 _properties.value = listResult
                 _status.value = PokemonAPIStatus.DONE
             } catch (e: Exception) {
+                delay(2500)
                 _status.value = PokemonAPIStatus.ERROR
                 _properties.value = ArrayList()
             }
