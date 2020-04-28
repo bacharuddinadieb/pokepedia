@@ -10,13 +10,22 @@ import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import org.d3if0113.pokepedia.network.PokemonAPIStatus
 import org.d3if0113.pokepedia.property.PokemonRegionProperty
+import org.d3if0113.pokepedia.property.PokemonRegionPropertyKota
 import org.d3if0113.pokepedia.ui.region.RegionAdapter
+import org.d3if0113.pokepedia.ui.region.detail.DetailRegionAdapter
 
-@BindingAdapter("listData")
+@BindingAdapter("listDataRegion")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<PokemonRegionProperty>?) {
     val adapter = recyclerView.adapter as RegionAdapter
     adapter.submitList(data)
 }
+
+@BindingAdapter("listDataKotaRegion")
+fun bindRecyclerView2(recyclerView: RecyclerView, data: List<PokemonRegionPropertyKota>?) {
+    val adapter = recyclerView.adapter as DetailRegionAdapter
+    adapter.submitList(data)
+}
+
 
 @BindingAdapter("pokemonAPIStatusImage")
 fun bindStatus(

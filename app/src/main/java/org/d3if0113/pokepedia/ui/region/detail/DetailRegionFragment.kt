@@ -30,6 +30,8 @@ class DetailRegionFragment : Fragment() {
         Log.i("Data Parcel", args.SELECTEDREGIONPROPERTY.nama)
         binding.varRegionProperty = pokemonRegionProperty
         binding.varJudul = pokemonRegionProperty.nama.capitalize()
+        binding.rvDaftarKota.adapter = DetailRegionAdapter()
+        binding.rvDaftarKota.isNestedScrollingEnabled = false
 
         return binding.root
     }
