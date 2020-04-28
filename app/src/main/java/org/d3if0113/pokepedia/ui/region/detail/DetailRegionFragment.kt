@@ -25,10 +25,11 @@ class DetailRegionFragment : Fragment() {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_detail_region, container, false)
         val args = arguments?.let { DetailRegionFragmentArgs.fromBundle(it) }
+        val pokemonRegionProperty = args!!.SELECTEDREGIONPROPERTY
 
-        Log.i("Data Parcel", args?.SELECTEDREGIONPROPERTY?.nama)
-        binding.varRegionProperty = args!!.SELECTEDREGIONPROPERTY
-        binding.varJudul = args.SELECTEDREGIONPROPERTY.nama.capitalize()
+        Log.i("Data Parcel", args.SELECTEDREGIONPROPERTY.nama)
+        binding.varRegionProperty = pokemonRegionProperty
+        binding.varJudul = pokemonRegionProperty.nama.capitalize()
 
         return binding.root
     }

@@ -1,10 +1,12 @@
 package org.d3if0113.pokepedia
 
+import android.net.Uri
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import org.d3if0113.pokepedia.network.PokemonAPIStatus
 import org.d3if0113.pokepedia.property.PokemonRegionProperty
@@ -44,5 +46,17 @@ fun bindStatus(
         PokemonAPIStatus.ERROR -> {
             statusProgressBar.visibility = View.GONE
         }
+    }
+}
+
+@BindingAdapter("imageURL")
+fun bindImage(imgView: ImageView, imgURL: String?) {
+    imgURL?.let {
+        val imgUri = Uri.parse(imgURL)
+        Glide.with(imgView.context)
+            .load(imgUri)
+            .placeholder(R.drawable.kotak_loading)
+            .error(R.drawable.kotak_broken)
+            .into(imgView)
     }
 }
