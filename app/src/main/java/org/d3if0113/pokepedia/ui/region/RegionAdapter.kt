@@ -8,14 +8,22 @@ import androidx.recyclerview.widget.RecyclerView
 import org.d3if0113.pokepedia.databinding.ItemRegionBinding
 import org.d3if0113.pokepedia.property.PokemonRegionProperty
 
-class RegionAdapter :
+class RegionAdapter(val clickListener: RegionListener) :
     ListAdapter<PokemonRegionProperty, RegionAdapter.RegionPropertyViewHolder>(DiffCallback) {
     class RegionPropertyViewHolder(private var binding: ItemRegionBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(regionProperty: PokemonRegionProperty) {
+        fun bind(regionProperty: PokemonRegionProperty, clickListener: RegionListener) {
             binding.varRegion = regionProperty.nama.capitalize()
             binding.varNumCity = "Total kota ${regionProperty.listKota.size}"
+            binding.varRegionProperty = regionProperty
+            binding.varClickListener = clickListener
+            binding.executePendingBindings()
         }
+    }
+
+    class RegionListener(val clickListener: (pokemonRegionProperty: PokemonRegionProperty) -> Unit) {
+        fun onClick(pokemonRegionProperty: PokemonRegionProperty) =
+            clickListener(pokemonRegionProperty)
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<PokemonRegionProperty>() {
@@ -43,7 +51,7 @@ class RegionAdapter :
 
     override fun onBindViewHolder(holder: RegionAdapter.RegionPropertyViewHolder, position: Int) {
         val regionProperty = getItem(position)
-        holder.bind(regionProperty)
+        holder.bind(regionProperty, clickListener)
     }
 
 }

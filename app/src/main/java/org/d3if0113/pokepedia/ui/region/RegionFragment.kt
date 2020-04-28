@@ -1,6 +1,7 @@
 package org.d3if0113.pokepedia.ui.region
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +30,13 @@ class RegionFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.regionViewModel = viewModel
 
-        binding.rvRegion.adapter = RegionAdapter()
+        binding.rvRegion.adapter =
+            RegionAdapter(RegionAdapter.RegionListener { pokemonRegionProperty ->
+                Log.i(
+                    "ahahaha",
+                    "${pokemonRegionProperty.nama} yes"
+                )
+            })
         return binding.root
     }
 

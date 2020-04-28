@@ -12,6 +12,14 @@
         <variable
             name="varNumCity"
             type="String" />
+
+        <variable
+            name="varRegionProperty"
+            type="org.d3if0113.pokepedia.property.PokemonRegionProperty" />
+
+        <variable
+            name="varClickListener"
+            type="org.d3if0113.pokepedia.ui.region.RegionAdapter.RegionListener" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -22,6 +30,7 @@
         android:hapticFeedbackEnabled="true"
         app:cardElevation="3dp"
         app:cardPreventCornerOverlap="true"
+        android:onClick="@{()->varClickListener.onClick(varRegionProperty)}"
         app:cardUseCompatPadding="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
