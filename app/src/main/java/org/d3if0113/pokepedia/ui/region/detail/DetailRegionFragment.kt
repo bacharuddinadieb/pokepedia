@@ -22,11 +22,14 @@ class DetailRegionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_detail_region, container, false)
         val args = arguments?.let { DetailRegionFragmentArgs.fromBundle(it) }
 
         Log.i("Data Parcel", args?.SELECTEDREGIONPROPERTY?.nama)
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_detail_region, container, false)
+        binding.varRegionProperty = args!!.SELECTEDREGIONPROPERTY
+        binding.varJudul = args.SELECTEDREGIONPROPERTY.nama.capitalize()
+
         return binding.root
     }
 
