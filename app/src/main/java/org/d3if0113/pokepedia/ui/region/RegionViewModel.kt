@@ -5,14 +5,17 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
+import org.d3if0113.pokepedia.database.getDatabase
 import org.d3if0113.pokepedia.network.PokemonAPI
 import org.d3if0113.pokepedia.network.PokemonAPIStatus
 import org.d3if0113.pokepedia.property.PokemonRegionProperty
+import org.d3if0113.pokepedia.repository.RegionRepository
 
 class RegionViewModel(application: Application) : AndroidViewModel(application) {
     private val _status = MutableLiveData<PokemonAPIStatus>()
     private val _properties = MutableLiveData<List<PokemonRegionProperty>>()
     private val _navigateToDetailRegion = MutableLiveData<PokemonRegionProperty>()
+    private val _regionRepository = RegionRepository(getDatabase(application))
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(
         viewModelJob + Dispatchers.Main
@@ -29,6 +32,7 @@ class RegionViewModel(application: Application) : AndroidViewModel(application) 
             try {
                 var listResult = getPropertiesDeferred.await()
                 _properties.value = listResult
+                _regionRepository.refreshRegion()
                 _status.value = PokemonAPIStatus.DONE
             } catch (e: Exception) {
                 delay(2500)
