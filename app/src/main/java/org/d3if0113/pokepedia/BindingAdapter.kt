@@ -1,5 +1,7 @@
 package org.d3if0113.pokepedia
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.net.Uri
 import android.view.View
 import android.widget.ImageView
@@ -7,10 +9,15 @@ import android.widget.ProgressBar
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.google.android.material.snackbar.Snackbar
 import org.d3if0113.pokepedia.network.PokemonAPIStatus
+import org.d3if0113.pokepedia.property.DAFTAR_TIPE_POKEMON
+import org.d3if0113.pokepedia.property.PokemonPokedexProperty
 import org.d3if0113.pokepedia.property.PokemonRegionProperty
 import org.d3if0113.pokepedia.property.PokemonRegionPropertyKota
+import org.d3if0113.pokepedia.ui.pokedex.PokedexAdapter
 import org.d3if0113.pokepedia.ui.region.RegionAdapter
 import org.d3if0113.pokepedia.ui.region.detail.DetailRegionAdapter
 
@@ -26,6 +33,11 @@ fun bindRecyclerView2(recyclerView: RecyclerView, data: List<PokemonRegionProper
     adapter.submitList(data)
 }
 
+@BindingAdapter("listDataPokedex")
+fun bindRecyclerView3(recyclerView: RecyclerView, data: List<PokemonPokedexProperty>?) {
+    val adapter = recyclerView.adapter as PokedexAdapter
+    adapter.submitList(data)
+}
 
 @BindingAdapter("pokemonAPIStatusImage")
 fun bindStatus(
@@ -67,5 +79,19 @@ fun bindImage(imgView: ImageView, imgURL: String?) {
             .placeholder(R.drawable.kotak_loading)
             .error(R.drawable.kotak_broken)
             .into(imgView)
+    }
+}
+
+@BindingAdapter("chipTipeMapper")
+fun chipTipeMapper(chipGroup: ChipGroup, listTipePokemon: List<Int>) {
+    listTipePokemon.let {
+        chipGroup.removeAllViews()
+        for (item in listTipePokemon) {
+            var chip = Chip(chipGroup.context)
+            chip.text = DAFTAR_TIPE_POKEMON[item - 1].nama
+            chip.chipBackgroundColor =
+                ColorStateList.valueOf(Color.parseColor(DAFTAR_TIPE_POKEMON[item - 1].warna))
+            chipGroup.addView(chip)
+        }
     }
 }
