@@ -1,8 +1,6 @@
 package org.d3if0113.pokepedia.database
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
+import androidx.room.*
 
 @Dao
 interface RegionDAO {
@@ -11,4 +9,9 @@ interface RegionDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllKota(kota: List<EntityKota>)
+}
+
+@Database(entities = [EntityRegion::class, EntityKota::class], version = 2)
+abstract class PokemonDatabase : RoomDatabase() {
+    abstract val regionDAO: RegionDAO
 }
