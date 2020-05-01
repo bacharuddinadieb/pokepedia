@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import org.d3if0113.pokepedia.property.PokemonRegionProperty
 
 @Entity(tableName = "tb_region")
 data class EntityRegion(
@@ -37,3 +38,12 @@ data class EntityKota constructor(
     @ColumnInfo(name = "id_region")
     val idRegion: String
 )
+
+fun List<PokemonRegionProperty>.asDatabaseModelRegion(): List<EntityRegion> {
+    return map {
+        EntityRegion(
+            nama = it.nama,
+            deskripsi = it.deskripsi
+        )
+    }
+}
