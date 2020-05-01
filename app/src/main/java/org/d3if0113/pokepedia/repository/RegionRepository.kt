@@ -21,7 +21,7 @@ class RegionRepository(private val database: PokemonDatabase) {
 
     suspend fun refreshRegion() {
         withContext(Dispatchers.IO) {
-            val dataRegion = PokemonAPI.retrofitService.getData().await()
+            val dataRegion = PokemonAPI.retrofitService.getDataRegion().await()
             val dataRegionKota: MutableList<EntityKota> = mutableListOf()
             try {
                 database.regionDAO.insertAllRegion(dataRegion.asDatabaseModelRegion())

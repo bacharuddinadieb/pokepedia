@@ -3,6 +3,7 @@ package org.d3if0113.pokepedia.network
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.Deferred
+import org.d3if0113.pokepedia.property.PokemonPokedexProperty
 import org.d3if0113.pokepedia.property.PokemonRegionProperty
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -26,7 +27,10 @@ private val retrofit = Retrofit.Builder()
 
 interface PokemonAPIService {
     @GET("region.json")
-    fun getData(): Deferred<List<PokemonRegionProperty>>
+    fun getDataRegion(): Deferred<List<PokemonRegionProperty>>
+
+    @GET("pokedex-list.json")
+    fun getDataPokedex(): Deferred<List<PokemonPokedexProperty>>
 }
 
 object PokemonAPI {
