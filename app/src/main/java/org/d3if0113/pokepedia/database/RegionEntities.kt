@@ -39,6 +39,20 @@ data class EntityKota constructor(
     val idRegion: String
 )
 
+data class EntityJoinRegionKota constructor(
+    @ColumnInfo(name = "nama_region")
+    val namaRegion: String,
+
+    @ColumnInfo(name = "deskripsi_region")
+    val deskripsi: String,
+
+    @ColumnInfo(name = "nama_kota")
+    val namaKota: String,
+
+    @ColumnInfo(name = "slogan_kota")
+    val slogan: String
+)
+
 fun List<PokemonRegionProperty>.asDatabaseModelRegion(): List<EntityRegion> {
     return map {
         EntityRegion(
