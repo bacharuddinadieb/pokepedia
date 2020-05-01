@@ -9,6 +9,6 @@ import org.d3if0113.pokepedia.network.BASE_URL_IMAGE
 data class PokemonRegionProperty(
     val nama: String,
     val deskripsi: String,
-    @Json(name = "kota") val listKota: List<PokemonRegionPropertyKota>,
+    @Json(name = "kota") var listKota: List<PokemonRegionPropertyKota>,
     val imgURL: String = "${BASE_URL_IMAGE}region/${nama}.png"
 ) : Parcelable

@@ -4,7 +4,9 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import org.d3if0113.pokepedia.network.BASE_URL_IMAGE
 import org.d3if0113.pokepedia.property.PokemonRegionProperty
+import org.d3if0113.pokepedia.property.PokemonRegionPropertyKota
 
 @Entity(tableName = "tb_region")
 data class EntityRegion(
@@ -52,6 +54,39 @@ data class EntityJoinRegionKota constructor(
     @ColumnInfo(name = "slogan_kota")
     val slogan: String
 )
+
+fun List<EntityJoinRegionKota>.asDomainModelRegionJoin(): List<PokemonRegionProperty> {
+    var tampungNamaRegion = ""
+    var listPokemonRegionProperty: MutableList<PokemonRegionProperty> = mutableListOf()
+    var pokemonRegionPropertyKota: MutableList<PokemonRegionPropertyKota> = mutableListOf()
+    var pokemonRegionPropertyKota2: MutableList<MutableList<PokemonRegionPropertyKota>> =
+        mutableListOf()
+
+    map {
+        if (it.namaRegion != tampungNamaRegion) {
+            var asd: MutableList<PokemonRegionPropertyKota> = mutableListOf()
+            listPokemonRegionProperty.add(
+                PokemonRegionProperty(
+                    nama = it.namaRegion,
+                    deskripsi = it.deskripsi,
+                    listKota = asd,
+                    imgURL = "${BASE_URL_IMAGE}region/${it.namaRegion}.png"
+                )
+            )
+            pokemonRegionPropertyKota2.add(pokemonRegionPropertyKota)
+            pokemonRegionPropertyKota = mutableListOf()
+        }
+        if (it.namaRegion != tampungNamaRegion) {
+        }
+        tampungNamaRegion = it.namaRegion
+        pokemonRegionPropertyKota.add(PokemonRegionPropertyKota(it.namaKota, it.slogan))
+    }
+    pokemonRegionPropertyKota2.add(pokemonRegionPropertyKota)
+    for ((index, item) in listPokemonRegionProperty.withIndex()) {
+        item.listKota = pokemonRegionPropertyKota2[index + 1]
+    }
+    return listPokemonRegionProperty
+}
 
 fun List<PokemonRegionProperty>.asDatabaseModelRegion(): List<EntityRegion> {
     return map {
