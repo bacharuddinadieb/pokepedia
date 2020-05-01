@@ -28,6 +28,12 @@ class PokedexFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.pokedexViewModel = viewModel
 
+        binding.rvPokemon.adapter = PokedexAdapter()
+
+        println(5.toString().padStart(3, '0'))
+        println(50.toString().padStart(3, '0'))
+        println(500.toString().padStart(3, '0'))
+
         return binding.root
     }
 
