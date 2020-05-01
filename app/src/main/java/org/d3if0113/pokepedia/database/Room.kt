@@ -1,6 +1,7 @@
 package org.d3if0113.pokepedia.database
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -10,6 +11,9 @@ interface RegionDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllKota(kota: List<EntityKota>)
+
+    @Query("select nama_region, deskripsi_region, nama_kota, slogan_kota from tb_region inner join tb_kota on nama_region = id_region")
+    fun getAllRegionJoinKota(): LiveData<List<EntityJoinRegionKota>>
 }
 
 @Database(entities = [EntityRegion::class, EntityKota::class], version = 2)
