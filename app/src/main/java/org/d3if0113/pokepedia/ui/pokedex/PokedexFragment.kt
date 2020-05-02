@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import org.d3if0113.pokepedia.R
 import org.d3if0113.pokepedia.databinding.FragmentPokedexBinding
 
@@ -28,11 +30,16 @@ class PokedexFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.pokedexViewModel = viewModel
 
-        binding.rvPokemon.adapter = PokedexAdapter()
+        binding.rvPokemon.adapter =
+            PokedexAdapter(PokedexAdapter.PokedexListener { viewModel.navigateToDetailRegionClick(it) })
 
-        println(5.toString().padStart(3, '0'))
-        println(50.toString().padStart(3, '0'))
-        println(500.toString().padStart(3, '0'))
+        viewModel.navigateToDetailPokedex.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                this.findNavController()
+                    .navigate(PokedexFragmentDirections.actionPokedexNavToDetailPokedexFragment(it))
+                viewModel.navigatedToDetailPokedex()
+            }
+        })
 
         return binding.root
     }
