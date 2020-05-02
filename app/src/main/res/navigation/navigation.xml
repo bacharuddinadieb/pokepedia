@@ -19,7 +19,11 @@
         android:id="@+id/pokedexNav"
         android:name="org.d3if0113.pokepedia.ui.pokedex.PokedexFragment"
         android:label="@string/pokedex"
-        tools:layout="@layout/fragment_pokedex" />
+        tools:layout="@layout/fragment_pokedex">
+        <action
+            android:id="@+id/action_pokedexNav_to_detailPokedexFragment"
+            app:destination="@id/detailPokedexFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/favoriteNav"
@@ -34,5 +38,14 @@
         <argument
             android:name="SELECTED_REGION_PROPERTY"
             app:argType="org.d3if0113.pokepedia.property.PokemonRegionProperty" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailPokedexFragment"
+        android:name="org.d3if0113.pokepedia.ui.pokedex.detail.DetailPokedexFragment"
+        android:label="fragment_detail_pokedex"
+        tools:layout="@layout/fragment_detail_pokedex">
+        <argument
+            android:name="SELECTED_POKEDEX_PROPERTY"
+            app:argType="org.d3if0113.pokepedia.property.PokemonPokedexProperty" />
     </fragment>
 </navigation>
