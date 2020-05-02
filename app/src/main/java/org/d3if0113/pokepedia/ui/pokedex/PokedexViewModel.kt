@@ -14,6 +14,7 @@ import org.d3if0113.pokepedia.property.PokemonPokedexProperty
 
 class PokedexViewModel(application: Application) : AndroidViewModel(application) {
     private val _properties = MutableLiveData<List<PokemonPokedexProperty>>()
+    private val _navigateToDetailPokedex = MutableLiveData<PokemonPokedexProperty>()
 
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(
@@ -40,6 +41,15 @@ class PokedexViewModel(application: Application) : AndroidViewModel(application)
 
     // ----------------------------- public variable & function
     val properties: LiveData<List<PokemonPokedexProperty>> get() = _properties
+    val navigateToDetailPokedex: LiveData<PokemonPokedexProperty> get() = _navigateToDetailPokedex
+
+    fun navigatedToDetailPokedex() {
+        _navigateToDetailPokedex.value = null
+    }
+
+    fun navigateToDetailRegionClick(pokemonPokedexProperty: PokemonPokedexProperty) {
+        _navigateToDetailPokedex.value = pokemonPokedexProperty
+    }
 
     override fun onCleared() {
         super.onCleared()
