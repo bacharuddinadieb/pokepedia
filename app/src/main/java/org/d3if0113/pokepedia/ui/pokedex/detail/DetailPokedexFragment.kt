@@ -1,10 +1,10 @@
 package org.d3if0113.pokepedia.ui.pokedex.detail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import org.d3if0113.pokepedia.R
@@ -25,8 +25,12 @@ class DetailPokedexFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_detail_pokedex, container, false)
         val args = arguments?.let { DetailPokedexFragmentArgs.fromBundle(it) }
         val pokemonPokedexProperty = args!!.SELECTEDPOKEDEXPROPERTY
+        (activity as AppCompatActivity).supportActionBar?.title =
+            pokemonPokedexProperty.nama.capitalize()
 
-        Log.i("detail pokemon", "${pokemonPokedexProperty.nama}")
+        binding.varPokemonPokedexProperty = pokemonPokedexProperty
+        binding.varNamaPokemonCapital = pokemonPokedexProperty.nama.capitalize()
+        binding.varAbilityPokemonCapital = pokemonPokedexProperty.kemampuan.capitalize()
 
         return binding.root
     }
