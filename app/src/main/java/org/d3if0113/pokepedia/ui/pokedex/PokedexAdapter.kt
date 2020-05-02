@@ -8,21 +8,27 @@ import androidx.recyclerview.widget.RecyclerView
 import org.d3if0113.pokepedia.databinding.ItemPokedexBinding
 import org.d3if0113.pokepedia.property.PokemonPokedexProperty
 
-class PokedexAdapter :
+class PokedexAdapter(val clickListener: PokedexListener) :
     ListAdapter<PokemonPokedexProperty, PokedexAdapter.PokemonPokedexPropertyViewHolder>(
         DiffCallback
     ) {
 
     class PokemonPokedexPropertyViewHolder(private var binding: ItemPokedexBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(regionPropertyKota: PokemonPokedexProperty) {
+        fun bind(regionPropertyKota: PokemonPokedexProperty, clickListener: PokedexListener) {
             binding.varPokedexProperty = regionPropertyKota
             binding.varPokemon = "#${regionPropertyKota.deretan.toString().padStart(
                 3,
                 '0'
             )} ${regionPropertyKota.nama.capitalize()}"
+            binding.varClickListener = clickListener
             binding.executePendingBindings()
         }
+    }
+
+    class PokedexListener(val clickListener: (pokemonPokedexProperty: PokemonPokedexProperty) -> Unit) {
+        fun onClick(pokemonPokedexProperty: PokemonPokedexProperty) =
+            clickListener(pokemonPokedexProperty)
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<PokemonPokedexProperty>() {
@@ -52,7 +58,7 @@ class PokedexAdapter :
 
     override fun onBindViewHolder(holder: PokemonPokedexPropertyViewHolder, position: Int) {
         val regionProperty = getItem(position)
-        holder.bind(regionProperty)
+        holder.bind(regionProperty, clickListener)
     }
 
 }
