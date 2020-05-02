@@ -12,6 +12,10 @@
         <variable
             name="varPokemon"
             type="String" />
+
+        <variable
+            name="varClickListener"
+            type="org.d3if0113.pokepedia.ui.pokedex.PokedexAdapter.PokedexListener" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -22,6 +26,7 @@
         android:hapticFeedbackEnabled="true"
         app:cardElevation="3dp"
         app:cardPreventCornerOverlap="true"
+        android:onClick="@{()->varClickListener.onClick(varPokedexProperty)}"
         app:cardUseCompatPadding="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
