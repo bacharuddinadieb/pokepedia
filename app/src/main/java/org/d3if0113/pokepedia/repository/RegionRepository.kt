@@ -53,4 +53,16 @@ class RegionRepository(private val database: PokemonDatabase) {
             }
         }
     }
+
+    suspend fun insertFavoritPokemon(pokemonPokedexProperty: PokemonPokedexProperty) {
+        withContext(Dispatchers.IO) {
+            try {
+                val entityFavorit = EntityFavorit(pokemonPokedexProperty.deretan)
+                database.pokedexDAO.insertFavoritPokemon(entityFavorit)
+                Log.i("Berhasil Insert favorit", "Deretan: ${entityFavorit.deretan}")
+            } catch (e: Exception) {
+                Log.i("Error Insert Favorit :(", e.message)
+            }
+        }
+    }
 }
