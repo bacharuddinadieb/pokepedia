@@ -80,6 +80,7 @@ data class EntityPokedex(
 
 @Entity(tableName = "tb_favorit")
 data class EntityFavorit(
+    @PrimaryKey
     @ColumnInfo(name = "deretan_favorit")
     val deretan: Int
 )

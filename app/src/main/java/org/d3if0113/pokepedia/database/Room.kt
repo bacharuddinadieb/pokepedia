@@ -28,7 +28,10 @@ interface PokedexDAO {
     fun insertFavoritPokemon(favorit: EntityFavorit)
 }
 
-@Database(entities = [EntityRegion::class, EntityKota::class, EntityPokedex::class], version = 3)
+@Database(
+    entities = [EntityRegion::class, EntityKota::class, EntityPokedex::class, EntityFavorit::class],
+    version = 4
+)
 abstract class PokemonDatabase : RoomDatabase() {
     abstract val regionDAO: RegionDAO
     abstract val pokedexDAO: PokedexDAO
