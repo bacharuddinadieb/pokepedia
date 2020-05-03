@@ -9,12 +9,15 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import org.d3if0113.pokepedia.database.getDatabase
 import org.d3if0113.pokepedia.network.PokemonAPI
 import org.d3if0113.pokepedia.property.PokemonPokedexProperty
+import org.d3if0113.pokepedia.repository.RegionRepository
 
 class PokedexViewModel(application: Application) : AndroidViewModel(application) {
     private val _properties = MutableLiveData<List<PokemonPokedexProperty>>()
     private val _navigateToDetailPokedex = MutableLiveData<PokemonPokedexProperty>()
+    private val _pokedexRepository = RegionRepository(getDatabase(application))
 
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(
@@ -32,6 +35,8 @@ class PokedexViewModel(application: Application) : AndroidViewModel(application)
                 var listResult = getPropertiesDeferred.await()
                 _properties.value = listResult
                 Log.i("Data Pokemon", "a ${listResult.size}")
+
+                _pokedexRepository.refreshPokedex()
             } catch (e: Exception) {
                 // _status.value = PokemonAPIStatus.ERROR
                 Log.i("Error Ngga tau :'v", e.message)
