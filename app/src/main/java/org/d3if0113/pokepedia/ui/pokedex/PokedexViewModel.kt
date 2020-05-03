@@ -48,6 +48,12 @@ class PokedexViewModel(application: Application) : AndroidViewModel(application)
         _navigateToDetailPokedex.value = pokemonPokedexProperty
     }
 
+    fun tambahkanFavorit(pokemonPokedexProperty: PokemonPokedexProperty) {
+        coroutineScope.launch {
+            _pokedexRepository.insertFavoritPokemon(pokemonPokedexProperty)
+        }
+    }
+
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
