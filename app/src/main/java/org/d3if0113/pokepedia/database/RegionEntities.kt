@@ -55,6 +55,28 @@ data class EntityJoinRegionKota constructor(
     val slogan: String
 )
 
+@Entity(tableName = "tb_pokedex")
+data class EntityPokedex(
+    @PrimaryKey()
+    @ColumnInfo(name = "deretan_pokedex")
+    val deretan: Int,
+
+    @ColumnInfo(name = "nama_pokedex")
+    val nama: String,
+
+    @ColumnInfo(name = "deskirpsi_pokedex")
+    val deskripsi: String,
+
+    @ColumnInfo(name = "kemampuan_pokedex")
+    val kemampuan: String,
+
+    @ColumnInfo(name = "tipe_pokedex")
+    val tipe: String,
+
+    @ColumnInfo(name = "kelemahan_pokedex")
+    val kelemahan: String
+)
+
 fun List<EntityJoinRegionKota>.asDomainModelRegionJoin(): List<PokemonRegionProperty> {
     var tampungNamaRegion = ""
     var listPokemonRegionProperty: MutableList<PokemonRegionProperty> = mutableListOf()
