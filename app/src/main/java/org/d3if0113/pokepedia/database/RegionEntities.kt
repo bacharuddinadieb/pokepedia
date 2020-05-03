@@ -78,6 +78,12 @@ data class EntityPokedex(
     val kelemahan: String
 )
 
+@Entity(tableName = "tb_favorit")
+data class EntityFavorit(
+    @ColumnInfo(name = "deretan_favorit")
+    val deretan: Int
+)
+
 fun List<EntityJoinRegionKota>.asDomainModelRegionJoin(): List<PokemonRegionProperty> {
     var tampungNamaRegion = ""
     var listPokemonRegionProperty: MutableList<PokemonRegionProperty> = mutableListOf()
