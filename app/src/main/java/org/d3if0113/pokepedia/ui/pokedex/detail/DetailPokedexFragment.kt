@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import org.d3if0113.pokepedia.R
 import org.d3if0113.pokepedia.databinding.FragmentDetailPokedexBinding
+import org.d3if0113.pokepedia.ui.pokedex.PokedexViewModel
 
 /**
  * A simple [Fragment] subclass.
@@ -16,6 +18,9 @@ import org.d3if0113.pokepedia.databinding.FragmentDetailPokedexBinding
 class DetailPokedexFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailPokedexBinding
+    private val viewModel: PokedexViewModel by lazy {
+        ViewModelProviders.of(this).get(PokedexViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +36,10 @@ class DetailPokedexFragment : Fragment() {
         binding.varPokemonPokedexProperty = pokemonPokedexProperty
         binding.varNamaPokemonCapital = pokemonPokedexProperty.nama.capitalize()
         binding.varAbilityPokemonCapital = pokemonPokedexProperty.kemampuan.capitalize()
+
+        binding.fabFavorite.setOnClickListener {
+            viewModel.tambahkanFavorit(pokemonPokedexProperty)
+        }
 
         return binding.root
     }
