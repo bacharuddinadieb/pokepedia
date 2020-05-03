@@ -132,3 +132,16 @@ fun List<PokemonPokedexProperty>.asDatabaseModelPokedex(): List<EntityPokedex> {
         )
     }
 }
+
+fun List<EntityPokedex>.asDomainModelPokedex(): List<PokemonPokedexProperty> {
+    return map { entityPokedex ->
+        PokemonPokedexProperty(
+            deretan = entityPokedex.deretan,
+            nama = entityPokedex.nama,
+            deskripsi = entityPokedex.deskripsi,
+            kemampuan = entityPokedex.kemampuan,
+            tipe = entityPokedex.tipe.split(", ").map { it.toInt() },
+            kelemahan = entityPokedex.kelemahan.split(", ").map { it.toInt() }
+        )
+    }
+}
