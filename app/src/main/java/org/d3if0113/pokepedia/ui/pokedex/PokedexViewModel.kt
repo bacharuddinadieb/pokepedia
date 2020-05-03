@@ -55,6 +55,12 @@ class PokedexViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
+    fun hapusFavorit(pokemonPokedexProperty: PokemonPokedexProperty) {
+        coroutineScope.launch {
+            _pokedexRepository.hapusFavoritPokemon(pokemonPokedexProperty)
+        }
+    }
+
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()

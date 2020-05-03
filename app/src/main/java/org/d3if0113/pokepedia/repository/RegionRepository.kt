@@ -70,4 +70,15 @@ class RegionRepository(private val database: PokemonDatabase) {
             }
         }
     }
+
+    suspend fun hapusFavoritPokemon(pokemonPokedexProperty: PokemonPokedexProperty) {
+        withContext(Dispatchers.IO) {
+            try {
+                val entityFavorit = EntityFavorit(pokemonPokedexProperty.deretan)
+                database.pokedexDAO.deleteFavorite(entityFavorit)
+            } catch (e: Exception) {
+                Log.i("Error Hapus Favorit :(", e.message)
+            }
+        }
+    }
 }

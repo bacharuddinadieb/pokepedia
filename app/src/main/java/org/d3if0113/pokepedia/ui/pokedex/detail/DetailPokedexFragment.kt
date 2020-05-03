@@ -33,7 +33,7 @@ class DetailPokedexFragment : Fragment() {
         val pokemonPokedexProperty = args!!.SELECTEDPOKEDEXPROPERTY
         (activity as AppCompatActivity).supportActionBar?.title =
             pokemonPokedexProperty.nama.capitalize()
-        var apakahAdaDiFavorite: Boolean = false
+        var apakahAdaDiFavorite = false
 
         binding.varPokemonPokedexProperty = pokemonPokedexProperty
         binding.varNamaPokemonCapital = pokemonPokedexProperty.nama.capitalize()
@@ -48,14 +48,19 @@ class DetailPokedexFragment : Fragment() {
                 }
                 if (apakahAdaDiFavorite) {
                     binding.fabFavorite.setImageResource(R.drawable.ic_delete_black_24dp)
+                } else {
+                    binding.fabFavorite.setImageResource(R.drawable.ic_favorite_black_24dp)
                 }
             }
         })
 
         binding.fabFavorite.setOnClickListener {
             if (apakahAdaDiFavorite) {
+                viewModel.hapusFavorit(pokemonPokedexProperty)
+                binding.fabFavorite.setImageResource(R.drawable.ic_favorite_black_24dp)
             } else {
                 viewModel.tambahkanFavorit(pokemonPokedexProperty)
+                binding.fabFavorite.setImageResource(R.drawable.ic_delete_black_24dp)
             }
         }
 
