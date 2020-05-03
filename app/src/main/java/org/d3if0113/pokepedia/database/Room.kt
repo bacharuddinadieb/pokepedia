@@ -20,6 +20,9 @@ interface RegionDAO {
 interface PokedexDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllPokedex(pokedex: List<EntityPokedex>)
+
+    @Query("select * from tb_pokedex")
+    fun getAllPokedex(): LiveData<List<EntityPokedex>>
 }
 
 @Database(entities = [EntityRegion::class, EntityKota::class, EntityPokedex::class], version = 3)
