@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import org.d3if0113.pokepedia.R
 import org.d3if0113.pokepedia.databinding.FragmentDetailPokedexBinding
@@ -32,13 +33,30 @@ class DetailPokedexFragment : Fragment() {
         val pokemonPokedexProperty = args!!.SELECTEDPOKEDEXPROPERTY
         (activity as AppCompatActivity).supportActionBar?.title =
             pokemonPokedexProperty.nama.capitalize()
+        var apakahAdaDiFavorite: Boolean = false
 
         binding.varPokemonPokedexProperty = pokemonPokedexProperty
         binding.varNamaPokemonCapital = pokemonPokedexProperty.nama.capitalize()
         binding.varAbilityPokemonCapital = pokemonPokedexProperty.kemampuan.capitalize()
 
+        viewModel.favoriteProperties.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                for (item in it) {
+                    if (item.deretan == pokemonPokedexProperty.deretan) {
+                        apakahAdaDiFavorite = true
+                    }
+                }
+                if (apakahAdaDiFavorite) {
+                    binding.fabFavorite.setImageResource(R.drawable.ic_delete_black_24dp)
+                }
+            }
+        })
+
         binding.fabFavorite.setOnClickListener {
-            viewModel.tambahkanFavorit(pokemonPokedexProperty)
+            if (apakahAdaDiFavorite) {
+            } else {
+                viewModel.tambahkanFavorit(pokemonPokedexProperty)
+            }
         }
 
         return binding.root

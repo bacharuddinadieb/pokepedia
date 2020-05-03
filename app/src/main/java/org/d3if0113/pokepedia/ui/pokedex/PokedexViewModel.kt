@@ -38,6 +38,7 @@ class PokedexViewModel(application: Application) : AndroidViewModel(application)
 
     // ----------------------------- public variable & function
     val properties: LiveData<List<PokemonPokedexProperty>> = _pokedexRepository.pokedex
+    val favoriteProperties: LiveData<List<PokemonPokedexProperty>> = _pokedexRepository.favorit
     val navigateToDetailPokedex: LiveData<PokemonPokedexProperty> get() = _navigateToDetailPokedex
 
     fun navigatedToDetailPokedex() {
