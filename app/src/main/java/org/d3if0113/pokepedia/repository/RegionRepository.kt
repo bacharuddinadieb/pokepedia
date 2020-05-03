@@ -22,6 +22,11 @@ class RegionRepository(private val database: PokemonDatabase) {
             it.asDomainModelPokedex()
         }
 
+    val favorit: LiveData<List<PokemonPokedexProperty>> =
+        Transformations.map(database.pokedexDAO.getAllFavorit()) {
+            it.asDomainModelPokedex()
+        }
+
     suspend fun refreshRegion() {
         withContext(Dispatchers.IO) {
             val dataRegion = PokemonAPI.retrofitService.getDataRegion().await()

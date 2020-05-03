@@ -5,6 +5,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.favorite.detail.DetailFavoriteFragment">
 
+    <data>
+
+        <variable
+            name="varPokemonPokedexProperty"
+            type="org.d3if0113.pokepedia.property.PokemonPokedexProperty" />
+
+        <variable
+            name="varNamaPokemonCapital"
+            type="String" />
+
+        <variable
+            name="varAbilityPokemonCapital"
+            type="String" />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -20,6 +35,7 @@
                 android:cropToPadding="true"
                 android:scaleType="centerInside"
                 android:src="@drawable/ic_launcher_foreground"
+                app:imageURL="@{varPokemonPokedexProperty.imgURL}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -32,6 +48,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:text="@{varNamaPokemonCapital}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_pokemonDetailFavorite"
@@ -45,6 +62,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:chipTipeMapper="@{varPokemonPokedexProperty.tipe}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_namaPokemonDetailFavorite">
 
@@ -57,6 +75,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:text="@{varPokemonPokedexProperty.deskripsi}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -83,6 +102,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:text="@{varAbilityPokemonCapital}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_abilityTeksDetailFavorite"
@@ -109,6 +129,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                app:chipTipeMapper="@{varPokemonPokedexProperty.kelemahan}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_kelemahanTeksDetailFavorite">

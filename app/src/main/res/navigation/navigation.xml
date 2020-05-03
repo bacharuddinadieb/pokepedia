@@ -29,7 +29,11 @@
         android:id="@+id/favoriteNav"
         android:name="org.d3if0113.pokepedia.ui.favorite.FavoriteFragment"
         android:label="@string/favorite"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorite">
+        <action
+            android:id="@+id/action_favoriteNav_to_detailFavoriteFragment"
+            app:destination="@id/detailFavoriteFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailRegionNav"
         android:name="org.d3if0113.pokepedia.ui.region.detail.DetailRegionFragment"
@@ -46,6 +50,16 @@
         tools:layout="@layout/fragment_detail_pokedex">
         <argument
             android:name="SELECTED_POKEDEX_PROPERTY"
+            app:argType="org.d3if0113.pokepedia.property.PokemonPokedexProperty" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFavoriteFragment"
+        android:name="org.d3if0113.pokepedia.ui.favorite.detail.DetailFavoriteFragment"
+        android:label="fragment_detail_favorite"
+        tools:layout="@layout/fragment_detail_favorite">
+
+        <argument
+            android:name="SELECTED_FAVORITE_PROPERTY"
             app:argType="org.d3if0113.pokepedia.property.PokemonPokedexProperty" />
     </fragment>
 </navigation>

@@ -17,6 +17,7 @@ import org.d3if0113.pokepedia.property.DAFTAR_TIPE_POKEMON
 import org.d3if0113.pokepedia.property.PokemonPokedexProperty
 import org.d3if0113.pokepedia.property.PokemonRegionProperty
 import org.d3if0113.pokepedia.property.PokemonRegionPropertyKota
+import org.d3if0113.pokepedia.ui.favorite.FavoriteAdapter
 import org.d3if0113.pokepedia.ui.pokedex.PokedexAdapter
 import org.d3if0113.pokepedia.ui.region.RegionAdapter
 import org.d3if0113.pokepedia.ui.region.detail.DetailRegionAdapter
@@ -36,6 +37,12 @@ fun bindRecyclerView2(recyclerView: RecyclerView, data: List<PokemonRegionProper
 @BindingAdapter("listDataPokedex")
 fun bindRecyclerView3(recyclerView: RecyclerView, data: List<PokemonPokedexProperty>?) {
     val adapter = recyclerView.adapter as PokedexAdapter
+    adapter.submitList(data)
+}
+
+@BindingAdapter("listDataFavorite")
+fun bindRecyclerView4(recyclerView: RecyclerView, data: List<PokemonPokedexProperty>?) {
+    val adapter = recyclerView.adapter as FavoriteAdapter
     adapter.submitList(data)
 }
 

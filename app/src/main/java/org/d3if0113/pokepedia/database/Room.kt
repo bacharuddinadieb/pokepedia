@@ -26,6 +26,9 @@ interface PokedexDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertFavoritPokemon(favorit: EntityFavorit)
+
+    @Query("select deretan_pokedex, nama_pokedex, deskirpsi_pokedex, kemampuan_pokedex, tipe_pokedex, kelemahan_pokedex from tb_pokedex inner join tb_favorit on deretan_pokedex = deretan_favorit")
+    fun getAllFavorit(): LiveData<List<EntityPokedex>>
 }
 
 @Database(
