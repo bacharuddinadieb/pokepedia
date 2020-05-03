@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import org.d3if0113.pokepedia.network.BASE_URL_IMAGE
+import org.d3if0113.pokepedia.property.PokemonPokedexProperty
 import org.d3if0113.pokepedia.property.PokemonRegionProperty
 import org.d3if0113.pokepedia.property.PokemonRegionPropertyKota
 
@@ -115,6 +116,19 @@ fun List<PokemonRegionProperty>.asDatabaseModelRegion(): List<EntityRegion> {
         EntityRegion(
             nama = it.nama,
             deskripsi = it.deskripsi
+        )
+    }
+}
+
+fun List<PokemonPokedexProperty>.asDatabaseModelPokedex(): List<EntityPokedex> {
+    return map {
+        EntityPokedex(
+            deretan = it.deretan,
+            nama = it.nama,
+            deskripsi = it.deskripsi,
+            kemampuan = it.kemampuan,
+            tipe = it.tipe.joinToString(),
+            kelemahan = it.kelemahan.joinToString()
         )
     }
 }
