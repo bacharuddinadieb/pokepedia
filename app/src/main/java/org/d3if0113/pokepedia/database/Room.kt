@@ -22,9 +22,10 @@ interface PokedexDAO {
     fun insertAllPokedex(pokedex: List<EntityPokedex>)
 }
 
-@Database(entities = [EntityRegion::class, EntityKota::class], version = 2)
+@Database(entities = [EntityRegion::class, EntityKota::class, EntityPokedex::class], version = 3)
 abstract class PokemonDatabase : RoomDatabase() {
     abstract val regionDAO: RegionDAO
+    abstract val pokedexDAO: PokedexDAO
 }
 
 private lateinit var INSTANCE: PokemonDatabase
