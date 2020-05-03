@@ -16,6 +16,12 @@ interface RegionDAO {
     fun getAllRegionJoinKota(): LiveData<List<EntityJoinRegionKota>>
 }
 
+@Dao
+interface PokedexDAO {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAllPokedex(pokedex: List<EntityPokedex>)
+}
+
 @Database(entities = [EntityRegion::class, EntityKota::class], version = 2)
 abstract class PokemonDatabase : RoomDatabase() {
     abstract val regionDAO: RegionDAO
