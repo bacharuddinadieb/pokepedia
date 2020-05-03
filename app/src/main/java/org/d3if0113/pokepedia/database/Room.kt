@@ -23,6 +23,9 @@ interface PokedexDAO {
 
     @Query("select * from tb_pokedex")
     fun getAllPokedex(): LiveData<List<EntityPokedex>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertFavoritPokemon(favorit: EntityFavorit)
 }
 
 @Database(entities = [EntityRegion::class, EntityKota::class, EntityPokedex::class], version = 3)
