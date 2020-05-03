@@ -7,6 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.d3if0113.pokepedia.database.*
 import org.d3if0113.pokepedia.network.PokemonAPI
+import org.d3if0113.pokepedia.property.PokemonPokedexProperty
 import org.d3if0113.pokepedia.property.PokemonRegionProperty
 
 class RegionRepository(private val database: PokemonDatabase) {
@@ -14,6 +15,11 @@ class RegionRepository(private val database: PokemonDatabase) {
     val regionJoin: LiveData<List<PokemonRegionProperty>> =
         Transformations.map(database.regionDAO.getAllRegionJoinKota()) {
             it.asDomainModelRegionJoin()
+        }
+
+    val pokedex: LiveData<List<PokemonPokedexProperty>> =
+        Transformations.map(database.pokedexDAO.getAllPokedex()) {
+            it.asDomainModelPokedex()
         }
 
     suspend fun refreshRegion() {
