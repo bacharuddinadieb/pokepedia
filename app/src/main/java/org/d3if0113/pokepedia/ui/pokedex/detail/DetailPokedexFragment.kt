@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import org.d3if0113.pokepedia.R
 import org.d3if0113.pokepedia.databinding.FragmentDetailPokedexBinding
 import org.d3if0113.pokepedia.ui.pokedex.PokedexViewModel
@@ -58,9 +59,21 @@ class DetailPokedexFragment : Fragment() {
             if (apakahAdaDiFavorite) {
                 viewModel.hapusFavorit(pokemonPokedexProperty)
                 binding.fabFavorite.setImageResource(R.drawable.ic_favorite_black_24dp)
+                Snackbar.make(
+                    binding.clDetailPokedex,
+                    "Berhasil hapus favorit",
+                    Snackbar.LENGTH_LONG
+                )
+                    .setAction("Action", null).show()
             } else {
                 viewModel.tambahkanFavorit(pokemonPokedexProperty)
                 binding.fabFavorite.setImageResource(R.drawable.ic_delete_black_24dp)
+                Snackbar.make(
+                    binding.clDetailPokedex,
+                    "Berhasil menambahkan favorit",
+                    Snackbar.LENGTH_LONG
+                )
+                    .setAction("Action", null).show()
             }
         }
 
