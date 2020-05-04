@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import org.d3if0113.pokepedia.R
 import org.d3if0113.pokepedia.databinding.FragmentDetailFavoriteBinding
 import org.d3if0113.pokepedia.ui.favorite.FavoriteViewModel
@@ -34,6 +35,12 @@ class DetailFavoriteFragment : Fragment() {
         binding.varPokemonPokedexProperty = pokemonPokedexProperty
         binding.varNamaPokemonCapital = pokemonPokedexProperty.nama.capitalize()
         binding.varAbilityPokemonCapital = pokemonPokedexProperty.kemampuan.capitalize()
+
+        binding.fabDelete.setOnClickListener {
+            viewModel.hapusFavorit(pokemonPokedexProperty)
+            this.findNavController()
+                .navigate(DetailFavoriteFragmentDirections.actionDetailFavoriteFragmentPopIncludingFavoriteNav())
+        }
 
         return binding.root
     }

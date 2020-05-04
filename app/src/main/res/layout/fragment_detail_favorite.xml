@@ -20,122 +20,139 @@
             type="String" />
     </data>
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_detailFavorite"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/iv_pokemonDetailFavorite"
-                android:layout_width="0dp"
-                android:layout_height="300dp"
-                android:cropToPadding="true"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_launcher_foreground"
-                app:imageURL="@{varPokemonPokedexProperty.imgURL}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tv_namaPokemonDetailFavorite"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:text="@{varNamaPokemonCapital}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_pokemonDetailFavorite"
-                tools:text="#003 Venusaur" />
+                <ImageView
+                    android:id="@+id/iv_pokemonDetailFavorite"
+                    android:layout_width="0dp"
+                    android:layout_height="300dp"
+                    android:cropToPadding="true"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_launcher_foreground"
+                    app:imageURL="@{varPokemonPokedexProperty.imgURL}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/cg_tipePokemonDetailFavorite"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:chipTipeMapper="@{varPokemonPokedexProperty.tipe}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_namaPokemonDetailFavorite">
+                <TextView
+                    android:id="@+id/tv_namaPokemonDetailFavorite"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:text="@{varNamaPokemonCapital}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_pokemonDetailFavorite"
+                    tools:text="#003 Venusaur" />
 
-            </com.google.android.material.chip.ChipGroup>
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/cg_tipePokemonDetailFavorite"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:chipTipeMapper="@{varPokemonPokedexProperty.tipe}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_namaPokemonDetailFavorite">
 
-            <TextView
-                android:id="@+id/tv_detailPokemonDetailFavorite"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:text="@{varPokemonPokedexProperty.deskripsi}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cg_tipePokemonDetailFavorite"
-                tools:text="there is a large flower on venusaur's back. the flower is said to take on vivid colors if it gets plenty of nutrition and sunlight. the flower's aroma soothes the emotions of people." />
+                </com.google.android.material.chip.ChipGroup>
 
-            <TextView
-                android:id="@+id/tv_abilityTeksDetailFavorite"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="Ability"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_detailPokemonDetailFavorite" />
+                <TextView
+                    android:id="@+id/tv_detailPokemonDetailFavorite"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{varPokemonPokedexProperty.deskripsi}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cg_tipePokemonDetailFavorite"
+                    tools:text="there is a large flower on venusaur's back. the flower is said to take on vivid colors if it gets plenty of nutrition and sunlight. the flower's aroma soothes the emotions of people." />
 
-            <TextView
-                android:id="@+id/tv_abilityDetailFavorite"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:text="@{varAbilityPokemonCapital}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_abilityTeksDetailFavorite"
-                tools:text="Overgrow" />
+                <TextView
+                    android:id="@+id/tv_abilityTeksDetailFavorite"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Ability"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_detailPokemonDetailFavorite" />
 
-            <TextView
-                android:id="@+id/tv_kelemahanTeksDetailFavorite"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="Kelemahan"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_abilityDetailFavorite" />
+                <TextView
+                    android:id="@+id/tv_abilityDetailFavorite"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{varAbilityPokemonCapital}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_abilityTeksDetailFavorite"
+                    tools:text="Overgrow" />
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/cg_kelemahanPokemonDetailFavorite"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                app:chipTipeMapper="@{varPokemonPokedexProperty.kelemahan}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_kelemahanTeksDetailFavorite">
+                <TextView
+                    android:id="@+id/tv_kelemahanTeksDetailFavorite"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Kelemahan"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_abilityDetailFavorite" />
 
-            </com.google.android.material.chip.ChipGroup>
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/cg_kelemahanPokemonDetailFavorite"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    app:chipTipeMapper="@{varPokemonPokedexProperty.kelemahan}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_kelemahanTeksDetailFavorite">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+                </com.google.android.material.chip.ChipGroup>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:src="@drawable/ic_delete_black_24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

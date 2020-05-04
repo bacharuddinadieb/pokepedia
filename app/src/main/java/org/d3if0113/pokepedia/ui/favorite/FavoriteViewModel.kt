@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import org.d3if0113.pokepedia.database.getDatabase
 import org.d3if0113.pokepedia.property.PokemonPokedexProperty
 import org.d3if0113.pokepedia.repository.RegionRepository
@@ -44,6 +45,12 @@ class FavoriteViewModel(application: Application) : AndroidViewModel(application
 
     fun navigateToDetailFavoriteClick(pokemonPokedexProperty: PokemonPokedexProperty) {
         _navigateToDetailFavorite.value = pokemonPokedexProperty
+    }
+
+    fun hapusFavorit(pokemonPokedexProperty: PokemonPokedexProperty) {
+        coroutineScope.launch {
+            _favoriteRepository.hapusFavoritPokemon(pokemonPokedexProperty)
+        }
     }
 
     override fun onCleared() {
