@@ -2,6 +2,7 @@ package org.d3if0113.pokepedia
 
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.view.View
 import android.widget.ImageView
@@ -83,7 +84,7 @@ fun bindImage(imgView: ImageView, imgURL: String?) {
         val imgUri = Uri.parse(imgURL)
         Glide.with(imgView.context)
             .load(imgUri)
-            .placeholder(R.drawable.kotak_loading)
+            .placeholder(ColorDrawable(Color.parseColor("#eeeeee")))
             .error(R.drawable.kotak_broken)
             .into(imgView)
     }
